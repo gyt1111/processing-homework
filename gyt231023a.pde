@@ -1,12 +1,12 @@
-图片;
-我、你、我;
-j;
+PImage img;
+int x, y, i;
+float j;
 
-进口加工。*;
+import processing.pdf.*;
 
-布尔记录;
+boolean record;
 
-空设置(){
+void setup() {
   img = loadImage("zjl.jpg");
   size(1279,1068);
   background(255);
@@ -14,30 +14,29 @@ j;
   img = loadImage("zjl.jpg");
 }
 
-空画(){
-  如果(记录){
-    //注意###将替换为框架号。太棒了!
+void draw() {
+  if (record) {
     beginRecord(PDF, "frame-####.pdf");
   }
   frameRate(5);
   for(i=0;i<1000;i++){
-  X=圆(随机(宽度));
+  x = round(random(width));
   y = round(random(height));
-  颜色C=IMG.获得(X,Y);
+  color c = img.get(x, y);
   j=noise(10,50)*50;
-  中风(c);
+  stroke(c);
   strokeWeight(2);
   noFill();
   line(x+j,y-j,x-j,y+j);
     }
  
-  如果(记录){
+  if (record) {
     endRecord();
-  记录=错误;
+  record = false;
   }
 }
 
-//使用键盘,使成千上万的文件不会被创建
- 空鼠压() {
-  记录=真实;
+// Use a keypress so thousands of files aren't created
+void mousePressed() {
+  record = true;
 }
